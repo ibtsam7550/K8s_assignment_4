@@ -1,0 +1,26 @@
+# Applied only for the autoscaling test (Milestone 4, part 4) - it lives in a sub-folder so that
+# `kubectl apply -f k8s/` does not install it. While an HPA exists it overrides `kubectl scale`.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: emi-web
+  namespace: emi
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: emi-web
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
+  behavior:
+    scaleDown:
+      # The default window is 300 s, longer than the 3-minute low-load phase of the test, so pods
+      # would never be removed inside it. 60 s lets the scale-down show up in the graph.
+      stabilizationWindowSeconds: 60

@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  namespace: emi
+  labels:
+    app: mongo
+spec:
+  clusterIP: None                  # headless: gives every pod its own DNS name (mongo-0.mongo, ...)
+  publishNotReadyAddresses: true   # names resolve before the replica set exists
+  selector:
+    app: mongo
+  ports:
+    - name: mongo
+      port: 27017
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo
+  namespace: emi
+spec:
+  serviceName: mongo
+  replicas: 3
+  podManagementPolicy: Parallel    # start all three together; the init Job waits for them
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: mongo
+          image: mongo:6.0
+          args: ["--replSet", "rs0", "--bind_ip_all", "--wiredTigerCacheSizeGB", "0.25"]
+          ports:
+            - name: mongo
+              containerPort: 27017
+          readinessProbe:
+            tcpSocket:
+              port: 27017
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              memory: 768Mi        # 0.25 GB WiredTiger cache keeps three members small enough for a laptop
+          volumeMounts:
+            - name: data
+              mountPath: /data/db
+  volumeClaimTemplates:            # -> PVCs data-mongo-0, data-mongo-1, data-mongo-2
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: standard
+        resources:
+          requests:
+            storage: 1Gi

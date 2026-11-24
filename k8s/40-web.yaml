@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emi-web
+  namespace: emi
+  labels:
+    app: emi-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: emi-web
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:           # add a pod first, never remove a Ready one -> no failed requests during updates
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: emi-web
+    spec:
+      securityContext:
+        runAsNonRoot: true
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: web
+          image: emi-web:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: emi-config
+                  key: MONGO_URL
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          # startupProbe gives MongoDB up to 5 min to come up on first deploy without the
+          # livenessProbe restarting the pod in the meantime.
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            periodSeconds: 5
+            failureThreshold: 60
+            timeoutSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+          lifecycle:
+            preStop:         # keep serving briefly while the Ingress drops this pod from its endpoint list
+              exec:
+                command: ["sleep", "5"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: emi-web
+  namespace: emi
+spec:
+  type: ClusterIP
+  selector:
+    app: emi-web
+  ports:
+    - port: 80
+      targetPort: 8080
