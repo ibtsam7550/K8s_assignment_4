@@ -1,0 +1,22 @@
+NAME                      READY   STATUS      RESTARTS      AGE
+emi-web-c695fbbfb-9htnv   1/1     Running     0             14m
+emi-web-c695fbbfb-d6n7d   1/1     Running     6 (29m ago)   11h
+emi-web-c695fbbfb-m6nxb   1/1     Running     6 (29m ago)   12h
+emi-web-c695fbbfb-mvmn6   1/1     Running     6 (29m ago)   12h
+emi-web-c695fbbfb-xx57l   1/1     Running     6 (29m ago)   11h
+mongo-0                   1/1     Running     0             2m16s
+mongo-1                   1/1     Running     0             22m
+mongo-2                   1/1     Running     0             25m
+mongo-init-lzwwd          0/1     Completed   0             12h
+mongo-1                   1/1     Terminating   0             23m
+mongo-1                   1/1     Terminating   0             23m
+mongo-1                   0/1     Completed     0             23m
+mongo-1                   0/1     Completed     0             23m
+mongo-1                   0/1     Completed     0             23m
+mongo-1                   0/1     Pending       0             0s
+mongo-1                   0/1     Pending       0             0s
+mongo-1                   0/1     ContainerCreating   0             0s
+mongo-1                   0/1     ContainerCreating   0             1s
+mongo-1                   0/1     Running             0             1s
+mongo-1                   1/1     Running             0             6s
+mongo-1                   1/1     Running             0             6s

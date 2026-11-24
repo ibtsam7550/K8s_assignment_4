@@ -1,0 +1,31 @@
+== 200 req/s for 60s -> http://emi.local:80/api/emi ==
+httperf: warning: open file limit > FD_SETSIZE; limiting max. # of open files to FD_SETSIZE
+httperf --hog --timeout=5 --client=0/1 --server=emi.local --port=80 --uri=/ --rate=200 --send-buffer=4096 --recv-buffer=16384 --add-header='Content-Type: application/x-www-form-urlencoded\n' --wsesslog=12000,0.000,/tmp/emi-sessions.yT99Pz
+Maximum connect burst length: 55
+
+Total: connections 12000 requests 12000 replies 9806 test-duration 61.705 s
+
+Connection rate: 194.5 conn/s (5.1 ms/conn, <=753 concurrent connections)
+Connection time [ms]: min 0.2 avg 226.7 max 4993.6 median 0.5 stddev 515.5
+Connection time [ms]: connect 0.5
+Connection length [replies/conn]: 1.000
+
+Request rate: 194.5 req/s (5.1 ms/req)
+Request size [B]: 177.0
+
+Reply rate [replies/s]: min 76.4 avg 161.4 max 217.4 stddev 55.2 (12 samples)
+Reply time [ms]: response 225.1 transfer 1.0
+Reply size [B]: header 150.0 content 178.0 footer 0.0 (total 328.0)
+Reply status: 1xx=0 2xx=1784 3xx=0 4xx=0 5xx=8022
+
+CPU time [s]: user 12.83 system 46.74 (user 20.8% system 75.7% total 96.5%)
+Net I/O: 84.8 KB/s (0.7*10^6 bps)
+
+Errors: total 2194 client-timo 2194 socket-timo 0 connrefused 0 connreset 0
+Errors: fd-unavail 0 addrunavail 0 ftab-full 0 other 0
+
+Session rate [sess/s]: min 76.41 avg 158.92 max 217.40 stddev 55.25 (9806/12000)
+Session: avg 1.00 connections/session
+Session lifetime [s]: 0.2
+Session failtime [s]: 5.0
+Session length histogram: 2194 9806

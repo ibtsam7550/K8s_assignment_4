@@ -1,0 +1,24 @@
+NAME                      READY   STATUS      RESTARTS      AGE
+emi-web-c695fbbfb-5wppx   1/1     Running     6 (12m ago)   12h
+emi-web-c695fbbfb-d6n7d   1/1     Running     6 (12m ago)   11h
+emi-web-c695fbbfb-m6nxb   1/1     Running     6 (12m ago)   12h
+emi-web-c695fbbfb-mvmn6   1/1     Running     6 (12m ago)   12h
+emi-web-c695fbbfb-xx57l   1/1     Running     6 (12m ago)   11h
+mongo-0                   1/1     Running     0             8m
+mongo-1                   1/1     Running     0             5m42s
+mongo-2                   1/1     Running     0             8m
+mongo-init-lzwwd          0/1     Completed   0             12h
+emi-web-c695fbbfb-5wppx   1/1     Terminating   6 (15m ago)   12h
+emi-web-c695fbbfb-9htnv   0/1     Pending       0             0s
+emi-web-c695fbbfb-5wppx   1/1     Terminating   6 (15m ago)   12h
+emi-web-c695fbbfb-9htnv   0/1     Pending       0             0s
+emi-web-c695fbbfb-9htnv   0/1     ContainerCreating   0             0s
+emi-web-c695fbbfb-9htnv   0/1     ContainerCreating   0             0s
+emi-web-c695fbbfb-9htnv   0/1     Running             0             0s
+emi-web-c695fbbfb-9htnv   0/1     Running             0             5s
+emi-web-c695fbbfb-9htnv   0/1     Running             0             5s
+emi-web-c695fbbfb-9htnv   1/1     Running             0             6s
+emi-web-c695fbbfb-5wppx   0/1     Completed           6 (15m ago)   12h
+emi-web-c695fbbfb-5wppx   0/1     Completed           6 (15m ago)   12h
+emi-web-c695fbbfb-5wppx   0/1     Completed           6 (15m ago)   12h
+emi-web-c695fbbfb-5wppx   0/1     Completed           6 (15m ago)   12h

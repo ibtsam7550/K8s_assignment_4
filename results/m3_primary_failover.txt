@@ -1,0 +1,24 @@
+PRIMARY before: mongo-1
+Mon Nov 23 07:38:35 PKT 2026
+documents before: 128
+pod "mongo-1" deleted
+t+3s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+6s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+9s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+12s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+15s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+18s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+21s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+24s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+27s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+30s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+33s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+36s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+39s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+42s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+45s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+48s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+51s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+54s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+57s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY
+t+60s  mongo-0:PRIMARY  mongo-1:SECONDARY  mongo-2:SECONDARY

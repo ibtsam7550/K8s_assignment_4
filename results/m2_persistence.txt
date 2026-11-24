@@ -1,0 +1,28 @@
+== BEFORE ==
+Mon Nov 23 07:15:02 PKT 2026
+NAME      READY   STATUS    RESTARTS   AGE    IP            NODE       NOMINATED NODE   READINESS GATES
+mongo-1   1/1     Running   0          2m1s   10.244.0.15   minikube   <none>           <none>
+NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+data-mongo-1   Bound    pvc-0eea7131-9930-4cb2-b683-a0d253c7705f   1Gi        RWO            standard       <unset>                 12h
+pod uid:     a01f0483-a181-4842-ae19-0d4b9bdeec88
+volume (PV): pvc-0eea7131-9930-4cb2-b683-a0d253c7705f
+documents in emidb.calculations: 111
+
+== kubectl delete pod mongo-1 ==
+pod "mongo-1" deleted
+pod/mongo-1 condition met
+
+== AFTER ==
+Mon Nov 23 07:15:31 PKT 2026
+NAME      READY   STATUS    RESTARTS   AGE   IP            NODE       NOMINATED NODE   READINESS GATES
+mongo-1   1/1     Running   0          12s   10.244.0.18   minikube   <none>           <none>
+NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+data-mongo-1   Bound    pvc-0eea7131-9930-4cb2-b683-a0d253c7705f   1Gi        RWO            standard       <unset>                 12h
+pod uid:     f835ab85-0f78-44bd-ba68-9b94f68e62db   (new pod, same name)
+volume (PV): pvc-0eea7131-9930-4cb2-b683-a0d253c7705f   (same volume)
+documents in emidb.calculations: 111
+documents read from mongo-1 itself: 111
+replica set:
+mongo-0.mongo:27017  PRIMARY
+mongo-1.mongo:27017  SECONDARY
+mongo-2.mongo:27017  SECONDARY

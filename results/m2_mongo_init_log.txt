@@ -1,0 +1,8 @@
+waiting for mongo-0.mongo
+waiting for mongo-0.mongo
+{
+  ok: 1
+}
+mongo-0.mongo:27017  PRIMARY
+mongo-1.mongo:27017  SECONDARY
+mongo-2.mongo:27017  SECONDARY
